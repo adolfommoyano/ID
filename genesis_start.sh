@@ -6,6 +6,7 @@ fi
 
 #Replace EOS Public Key in genesis.json
 sed -i "s/IDBOTIC_EOSIO_PUBLIC_KEY/$IDBOTIC_EOSIO_PUBLIC_KEY/" genesis.json
+
 nodeos \
 --genesis-json $DATADIR"/../../genesis.json" \
 --signature-provider $IDBOTIC_EOSIO_PUBLIC_KEY=KEY:$IDBOTIC_EOSIO_PRIVATE_KEY\
@@ -17,7 +18,7 @@ nodeos \
 --data-dir $DATADIR"/data" \
 --blocks-dir $DATADIR"/blocks" \
 --config-dir $DATADIR"/config" \
---producer-name YOUR_PRODUCER_NAME\
+--producer-name idbotic\
 --http-server-address 0.0.0.0:8888 \
 --p2p-listen-endpoint 0.0.0.0:4444 \
 --access-control-allow-origin=* \
@@ -25,7 +26,6 @@ nodeos \
 --http-validate-host=false \
 --verbose-http-errors \
 --enable-stale-production \
---p2p-peer-address INSTANCE2_IP:4444 \
---p2p-peer-address INSTANCE3_IP:4444 \
 >> $DATADIR"/nodeos.log" 2>&1 & \
-echo $! > $DATADIR"/eosd.pid
+echo $! > $DATADIR"/eosd.pid \
+
