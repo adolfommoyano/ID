@@ -17,4 +17,13 @@ ENV IDBOTIC_EOSIO_PRIVATE_KEY $testnet_eosio_private_key
 ENV IDBOTIC_EOSIO_PUBLIC_KEY $testnet_eosio_public_key
 
 # Download from IDBOTIC
-RUN git clone https://github.com/adolfommoyano/ID.git
+RUN git clone --branch master https://github.com/adolfommoyano/ID.git
+COPY ./genesis_start.sh ./
+COPY ./start.sh ./
+COPY ./config.ini ./config/
+COPY ./genesis.json ./
+
+
+#Permissions for execute
+RUN chmod +x ./genesis_start.sh
+CMD ["./genesis_start.sh"]
