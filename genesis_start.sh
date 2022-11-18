@@ -18,7 +18,7 @@ nodeos \
 --data-dir $DATADIR"/data" \
 --blocks-dir $DATADIR"/blocks" \
 --config-dir $DATADIR"/config" \
---producer-name idbotic\
+--producer-name idbotic \
 --http-server-address 0.0.0.0:8888 \
 --p2p-listen-endpoint 0.0.0.0:4444 \
 --access-control-allow-origin=* \
@@ -27,4 +27,4 @@ nodeos \
 --verbose-http-errors \
 --enable-stale-production \
 >> $DATADIR"/nodeos.log" 2>&1 & \
-echo $! > $DATADIR"/eosd.pid 
+echo $! > $DATADIR"/eosd.pid" 
