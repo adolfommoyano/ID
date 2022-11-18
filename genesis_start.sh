@@ -28,3 +28,10 @@ nodeos \
 --enable-stale-production \
 >> $DATADIR"/nodeos.log" 2>&1 & \
 echo $! > $DATADIR"/eosd.pid" 
+
+while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:8888/v1/chain/get_info)" != "200" ]]; 
+  do
+    sleep 1
+  done
+  echo "====================================== Done genesis ======================================"
+}
