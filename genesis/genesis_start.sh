@@ -4,11 +4,11 @@ if [ ! -d $DATADIR ]; then
   mkdir -p $DATADIR;
 fi
 
-#Replace EOS Public Key in genesis.json
+#Replace idbotic Public Key in genesis.json
 sed -i "s/IDBOTIC_EOSIO_PUBLIC_KEY/$IDBOTIC_EOSIO_PUBLIC_KEY/" genesis.json
 
 nodeos \
---genesis-json genesis.json \
+--genesis-json $DATADIR"/../../genesis.json" \
 --signature-provider $IDBOTIC_EOSIO_PUBLIC_KEY=KEY:$IDBOTIC_EOSIO_PRIVATE_KEY \
 --plugin eosio::producer_plugin \
 --plugin eosio::chain_api_plugin \
@@ -28,10 +28,3 @@ nodeos \
 --enable-stale-production \
 >> $DATADIR"/nodeos.log" 2>&1 & \
 echo $! > $DATADIR"/eosd.pid" 
-
-while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:8888/v1/chain/get_info)" != "200" ]]; 
-  do
-    sleep 1
-  done
-  echo "====================================== Done genesis ======================================"
-}

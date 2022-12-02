@@ -13,17 +13,16 @@ RUN apt install ./eosio.cdt_1.8.1-1-ubuntu-18.04_amd64.deb
 # Declare eosio key
 ARG idbotic_eosio_private_key
 ARG idbotic_eosio_public_key
-ENV IDBOTIC_EOSIO_PRIVATE_KEY $testnet_eosio_private_key
-ENV IDBOTIC_EOSIO_PUBLIC_KEY $testnet_eosio_public_key
+ENV IDBOTIC_EOSIO_PRIVATE_KEY $idbotic_eosio_private_key
+ENV IDBOTIC_EOSIO_PUBLIC_KEY $idbotic_eosio_public_key
 
 # Download from IDBOTIC
 RUN git clone --branch master https://github.com/adolfommoyano/ID.git
-COPY ./genesis_start.sh ./
-COPY ./start.sh ./
-COPY ./config.ini ./config/
-COPY ./genesis.json ./
+#COPY ./genesis_start.sh ./
+#COPY ./start.sh ./
+#COPY ./config.ini ./config/
+#COPY ./genesis.json ./
 
 
 #Permissions for execute
-RUN chmod +x ./genesis_start.sh
-CMD ["./genesis_start.sh"]
+RUN chmod +x *.sh
